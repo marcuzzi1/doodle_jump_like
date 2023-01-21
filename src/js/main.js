@@ -1,3 +1,5 @@
+import {Player} from "./entities/player.js";
+
 /**
  * This is the main class of the mini-game./
  */
@@ -25,10 +27,18 @@ export class Main {
             throw e; // In case of error, we throw it
         }
 
+        // Defining some props
+        this.spanedEntities = []; // The entities that are spawned in the game
+
         // Initializing the events
         this._initEvents();
         // Resizing the canvas
         this._resizeCanvas();
+        // Creating a player entity
+        this.spanedEntities.push(new Player('player', {x: this.canvas.width / 2, y: this.canvas.height - 50}, {width: 50, height: 50}, 'red'));
+
+        // Drawing the entities
+        this._drawEntities();
     }
 
     /**
@@ -58,5 +68,20 @@ export class Main {
         this.canvas.width = document.querySelector('main').clientWidth * ratio; // The width of the canvas
         this.canvas.height = document.querySelector('main').clientHeight * ratio; // The height of the canvas
         this.ctx.scale(ratio, ratio); // Scaling the context
+        this._drawEntities(); // Drawing the entities
+    }
+
+    /**
+     * This method is used to draw the entities on the canvas.
+     * It is called in the main loop of the game or when the canvas is resized.
+     * @private
+     */
+    _drawEntities() {
+        // Clearing the canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        // Drawing the entities
+        this.spanedEntities.forEach((entity) => {
+            entity.draw(this.ctx);
+        });
     }
 }
