@@ -25,12 +25,12 @@ h1 {
 }
 
 main {
-    min-width: 95%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 90vh;
+    height: 90vh;
 }
 
 canvas#mainBoard {
