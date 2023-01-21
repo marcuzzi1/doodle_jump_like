@@ -26,4 +26,13 @@ export class Player extends AbstractEntity{
         ctx.fillStyle = this._color;
         ctx.fillRect(this._coords.x, this._coords.y, this._size.width, this._size.height);
     }
+
+    /**
+     * This method is used to manage the key down on the entity.
+     * @param ctx The context of the canvas to draw the entity on
+     * @param key The key that is down
+     */
+    manageKeyDown(ctx, key) {
+        console.log("Key pressed: " + key);
+    }
 }

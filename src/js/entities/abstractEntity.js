@@ -28,4 +28,20 @@ export class AbstractEntity {
      * @param ctx The context of the canvas to draw the entity on
      */
     draw(ctx) {};
+
+    /**
+     * This method is used to manage the click on the entity.
+     * Each entity should have its own click method by overriding this one.
+     * @param ctx The context of the canvas to draw the entity on
+     * @deprecated This method is not used yet
+     */
+    manageClick(ctx) {};
+
+    /**
+     * This method is used to manage the key pressed on the entity.
+     * Each entity should have its own key pressed method by overriding this one.
+     * @param ctx The context of the canvas to draw the entity on
+     * @param key The key that has been pressed
+     */
+    manageKeyDown(ctx, key) {};
 }
