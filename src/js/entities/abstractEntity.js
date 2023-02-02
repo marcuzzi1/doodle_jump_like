@@ -30,6 +30,16 @@ export class AbstractEntity {
     draw(ctx) {};
 
     /**
+     * This method is used to update the coordinates of the entity.
+     * @param ratioW The ratio of the width of the canvas
+     * @param ratioH The ratio of the height of the canvas
+     */
+    updateCoords(ratioW, ratioH) {
+        this._coords.x *= ratioW;
+        this._coords.y *= ratioH;
+    };
+
+    /**
      * This method is used to manage the click on the entity.
      * Each entity should have its own click method by overriding this one.
      * @param ctx The context of the canvas to draw the entity on

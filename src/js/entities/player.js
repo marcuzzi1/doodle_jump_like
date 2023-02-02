@@ -33,6 +33,6 @@ export class Player extends AbstractEntity{
      * @param key The key that is down
      */
     manageKeyDown(ctx, key) {
-        console.log("Key pressed: " + key);
+        // TODO - complete this function
     }
 }

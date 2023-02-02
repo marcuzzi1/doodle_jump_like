@@ -37,10 +37,17 @@ export class Main {
         // Resizing the canvas
         this._resizeCanvas();
         // Creating a player entity
-        this.spanedEntities.push(new Player('player', {x: this.canvas.width / 2 - 25, y: this.canvas.height - 50}, {width: 50, height: 50}, 'red'));
+        this.spanedEntities.push(new Player('player', {
+            x: this.canvas.width / 2 - 25,
+            y: this.canvas.height - 50
+        }, {width: 50, height: 50}, 'red'));
 
         // Drawing the entities
         this._drawEntities();
+
+        // Registering the current dimensions of the window in two variables
+        this.prevWidth = window.innerWidth;
+        this.prevHeight = window.innerHeight;
 
         // Comment this line when you don't need to entities position
         // this._drawMiddleLineForDebug();
@@ -64,7 +71,7 @@ export class Main {
 
         // Registering the key down event
         document.addEventListener('keydown', (e) => {
-            this.gameEngine.keyDownHandler(e.code);
+            this.gameEngine.keyDownHandler(e.key);
         });
     }
 
@@ -75,9 +82,14 @@ export class Main {
      */
     _resizeCanvas() {
         let ratio = window.devicePixelRatio; // The ratio of the device
+        let ratioW = window.innerWidth / this.prevWidth;
+        let ratioH = window.innerHeight / this.prevHeight
+        this.prevWidth = window.innerWidth;
+        this.prevHeight = window.innerHeight;
         this.canvas.width = document.querySelector('main').clientWidth * ratio; // The width of the canvas
         this.canvas.height = document.querySelector('main').clientHeight * ratio; // The height of the canvas
         this.ctx.scale(ratio, ratio); // Scaling the context
+        this.gameEngine.calculateNewCoords(ratioW, ratioH); // Updating the entities coordinates
         this._drawEntities(); // Drawing the entities
     }
 
